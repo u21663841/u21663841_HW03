@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<h2>Media Uploading System</h2>
+<h4>Something about the System</h4>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+            <h2>Description</h2>
+            <p>
+                This program is a media uploading system that enables the user to upload all types of files,
+                images and videos.The user selects one of the three radio buttons from the Option Selection on the right,
+                browses for the option selected and submits it onto the system.The file submitted will be found from the respective
+                tabs selected namely File,Image and video.The user can view the images and videos uploaded.
+                The user has the option to download the files or delete the files, images and videos. The user can also view the images 
+                or videos enlarged on screen by means of a fancy box.
+
+            </p>
+        </div>
+
+
+        <div class="col-md-4 col-lg-4">
+            <h2>Option Selection</h2>
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @*Creating of the radio buttons *@
+                <div>Document <input type="radio" name="UploadType" value="document"></div>
+                <div>Image <input type="radio" name="UploadType" value="image"></div>
+                <div>Video <input type="radio" name="UploadType" value="videos"></div><br />
+                @*Creating the Submit and browse button*@
+                <div><input type="file" value="Browse" name="files"></div>
+                <br />
+                <div><input type="submit" value="Submit" name="submit"></div>
+            }
+
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+
+

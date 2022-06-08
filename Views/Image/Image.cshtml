@@ -1,0 +1,86 @@
+﻿
+
+@using u21663841_HW03.Models
+@model List<FileModel>
+
+@{
+    ViewBag.Title = "Images";
+}
+
+<h2>Images of any file type</h2>
+<h4>..."Media/Images/"Folder</h4>
+<head>
+    <style type="text/css">
+        .auto-style {
+            color: #FFFFFF;
+        }
+
+        .t {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<div style="height:400px; overflow:auto;">
+    <div class="well-sm">
+
+        @foreach (FileModel file in Model)
+        {
+
+            @*
+                Default >> @Html.DisplayFor(modelItem => file.FileName)
+            *@
+            string imagepath = ("~/Media/Images/") + file.FileName;
+
+        @*Fancy box*@
+        <div class="col-md-3 col-lg-3 gallery">
+            <a data-fancybox="image-gallery" href="@Url.Content(imagepath)"><img src="@Url.Content(imagepath)" width="200" height="150" alt="img" /></a>
+
+            @file.FileName
+            <br />
+            @*Download button*@
+            <button class="btn btn-success">
+
+                @Html.ActionLink("Download", "DownloadFile",
+                 new { fileName = file.FileName })
+
+            </button>
+
+            @*Delete button*@
+            <button class="btn btn-danger">
+                @Html.ActionLink("DELETE", "DeleteFile",
+               new { fileName = file.FileName },
+               new { onclick = "return confirm('Are you sure you wish to delete this?');" })
+            </button>
+         </div>
+
+
+           }
+    </div>
+</div>
+
+@*jQuery for the Fancy box *@
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        $(".gallery a").fancybox({
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 600,
+            'speedOut': 200,
+            'overlayShow': false
+        });
+    });
+</script>
+
+
+@*//jQuery links needed *@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
